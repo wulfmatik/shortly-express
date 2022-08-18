@@ -89,13 +89,12 @@ app.post('/signup', (req, res) => {
     });
 });
 
-app.post('/login', (req, res, next) => {
+app.post('/login', (req, res) => {
   models.Users.get({username: req.body.username})
     .then((user) => {
       if (!user) {
         res.redirect('/login');
       }
-      console.log(req)
       if (models.Users.compare(req.body.password, user.password, user.salt)) {
         res.redirect('/');
       } else {
