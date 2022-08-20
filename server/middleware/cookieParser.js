@@ -1,5 +1,6 @@
 const parseCookies = (req, res, next) => {
   const cookieString = req.headers.cookie;
+
   if (cookieString === undefined) {
     req.cookies = {};
   } else {
@@ -10,6 +11,7 @@ const parseCookies = (req, res, next) => {
     splitPairs.forEach((cookie) => {
       cookieObj[cookie[0].trim()] = cookie[1];
     });
+
     req.cookies = cookieObj;
   }
   next();
